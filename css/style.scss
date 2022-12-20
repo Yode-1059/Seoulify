@@ -1,0 +1,381 @@
+@charset "UTF-8";
+
+$color-gold:#B79B6C;
+$color-black:#32353C;
+$color-gray:#F4F4F4;
+$color-white:#fff;
+
+@function rem($v) {
+    @return ($v/14)+rem;
+}
+
+@mixin mq-pc {
+    @media (min-width:800px) {
+        @content;
+    }
+}
+
+@mixin pyrem6 {
+    padding-top: rem(84);
+    padding-bottom: rem(84);
+}
+
+@mixin inner {
+    max-width: 800px;
+    width: (800/900)*100%;
+    margin: auto;
+
+    @include mq-pc() {
+        max-width: 1200px;
+        width: (1200/1920)*100%;
+        margin: auto;
+    }
+}
+
+@mixin flex($jc:space-between, $ai:center) {
+    display: flex;
+    align-items: $ai;
+    justify-content: $jc;
+    margin: auto;
+    flex-wrap: wrap
+}
+
+@mixin list {
+    @include flex;
+    list-style: none;
+}
+
+html {
+    font-size: (14/16)*100%;
+
+    @include mq-pc() {
+        font-size: 100%;
+    }
+}
+
+body {
+    font-family: "Helvetica",
+        "Helvetica Neue",
+        "Yu Gothic",
+        "Hiragino Sans",
+        "Hiragino Kaku Gothic ProN",
+        "Meiryo",
+        sans-serif;
+    color: $color-black;
+    background-color: $color-white;
+    line-height: (24em/14);
+    letter-spacing: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+a {
+    text-decoration: none;
+}
+
+//unit.......
+
+.unit {
+    &__cat {
+        margin-bottom: rem(28);
+    }
+
+    &__title {
+        font-size: rem(32);
+        font-weight: bold;
+        line-height: rem(47);
+        margin-bottom: rem(42);
+
+        &__price {
+            color: $color-gold;
+        }
+
+        br {
+            display: none;
+
+            @include mq-pc() {
+                display: block;
+            }
+        }
+    }
+}
+
+///card..,l.:_[]
+
+.card {
+    &__sale {
+        position: relative;
+        margin-bottom: rem(28);
+
+        &__pnt {
+            position: absolute;
+            width: 100px;
+            padding: 14px 0;
+            background-color: $color-gold;
+            color: $color-white;
+            top: 21px;
+            left: 21px;
+            text-align: center;
+            line-height: 1;
+            border-radius: 3px;
+        }
+    }
+
+    &__cat {
+        margin-bottom: rem(21);
+    }
+
+    &__title {
+        font-size: rem(21);
+        margin-bottom: rem(10);
+        font-weight: bold;
+    }
+
+    &__price {
+        font-size: rem(21);
+        color: $color-gold;
+        font-weight: bold;
+    }
+}
+
+///unin_::[:]_]_]_/
+
+.union {
+    position: relative;
+    border: $color-gray 1px solid;
+    display: block;
+    align-items: stretch;
+
+    @include mq-pc() {
+        height: (538/16)+rem;
+    }
+
+    &__txt {
+        position: absolute;
+        top: rem(112);
+        bottom: rem(112);
+        left: rem(42);
+        right: rem(42);
+        height: rem(438);
+        color: $color-white;
+        display: block;
+
+        @include mq-pc() {
+            top: (151/16)+rem;
+            bottom: (151/16)+rem;
+        }
+    }
+
+    &__cat {
+        margin-bottom: rem(28);
+    }
+
+    &__title {
+        font-size: rem(32);
+        font-weight: bold;
+        margin-bottom: rem(42);
+        line-height: rem(42);
+    }
+
+    &__bgc {
+        background-color: $color-gold;
+        padding: rem(112) rem(42) rem(112) rem(42);
+        align-items: stretch;
+        color: $color-white;
+        border: $color-gray 1px solid;
+        height: rem(438);
+
+        // @media (min-width:1880px) {
+        //     padding: rem(100) rem(42) rem(100) rem(42);
+        // }
+    }
+
+    @include mq-pc() {
+        height: (538/16)+rem;
+    }
+}
+
+//btn////__/_/_/_/
+
+.btn {
+    display: block;
+    font-weight: bold;
+    color: $color-white;
+    background-color: $color-black;
+    width: 185px;
+    text-align: center;
+    padding: rem(21);
+    border-radius: 3px;
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    background-color: rgba($color: $color-white, $alpha: 0.5);
+    padding: rem(32) 0;
+    z-index: 100000000000000;
+
+    &__inner {
+        @include inner();
+        @include flex;
+    }
+
+    &__list {
+        ul {
+            @include list();
+
+            .item {
+                margin-left: rem(32);
+            }
+
+            a {
+                color: $color-black;
+            }
+
+            .active {
+                color: $color-gold;
+            }
+        }
+    }
+}
+
+.mvisual {
+    width: 100%;
+    margin: 0;
+
+    // &__img {
+    //     height: 600px;
+
+    //     @include mq-pc() {
+    //         height: 800px;
+    //     }
+    // }
+}
+
+.top {
+
+    &__inner {
+        @include inner();
+        @include pyrem6();
+
+        @include mq-pc() {
+            @include flex();
+        }
+    }
+
+    &__sec:last-child {
+        background-color: $color-gray;
+    }
+
+
+    &__unit {
+        margin-bottom: rem(56);
+
+        @include mq-pc() {
+            width: (360/1200)*100%;
+        }
+    }
+
+    &__list {
+        @include flex();
+
+        @include mq-pc() {
+            width: (780/1200)*100%;
+        }
+    }
+
+    &__item {
+        width: (370/800)*100%;
+    }
+}
+
+.insta {
+    @include pyrem6();
+
+    &__inner {
+        @include inner();
+        text-align: center;
+    }
+
+    &__title {
+        font-size: rem(32);
+        font-weight: bold;
+        margin-bottom: rem(48);
+    }
+
+    &__list {
+        @include flex();
+    }
+
+    &__img {
+        width: (370/800)*100%;
+        margin-bottom: rem(56);
+        border: $color-gray 1px solid;
+        border-radius: 3px;
+
+        @include mq-pc() {
+            width: (270/1200)*100%;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.btm {
+    background-color: $color-gray;
+    @include pyrem6();
+
+    &__inner {
+        @include inner();
+    }
+
+    &__list {
+        @include mq-pc() {
+            @include flex();
+        }
+
+        align-items: stretch;
+    }
+
+    &__item {
+        margin-bottom: rem(56);
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        @include mq-pc() {
+            width: (760/1200)*100%;
+            margin-bottom: 0;
+
+            &:last-of-type {
+                width: (380/1200)*100%;
+            }
+        }
+    }
+}
+
+.footer {
+    background-color: $color-black;
+
+    &__inner {
+        @include inner;
+        padding: rem(84);
+        text-align: center;
+        color: $color-white;
+
+        @include mq-pc() {
+            @include flex(space-between, flex-start);
+            padding: (128/16)+rem 0 (64/16)+rem;
+        }
+    }
+
+    &__copy:first-of-type {
+        @include mq-pc() {
+            margin-bottom: 1rem;
+        }
+    }
+}
